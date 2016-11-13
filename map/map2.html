@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- saved from url=(0085)file:///Users/tingliu/Dropbox/Fall2016/GES387/ges387-webtemplate%20copy/maps/map2.htm -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Ramen Places</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="leaflet.css">
+</head>
+<body>
+	<div id="map" style="height: 650px; "> </div>
+
+	<script src="leaflet.js"></script>
+	<script>
+		var map = L.map('map').setView([41.892, -87.63], 16);
+
+		L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Animated path made with <a href="https://d3js.org/">D3</a>, Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+          id: 'mapbox.streets',
+          accessToken: 'pk.eyJ1IjoiY3VyZW1hbmdvIiwiYSI6ImNpcTQ4cGFwbDAxbmVmd25vZGNiOTVzeGEifQ.GWZByYkIft6eMRha69C8nw'  // Your mapbox access token
+        }).addTo(map);
+
+		var LeafIcon = L.Icon.extend({
+			options: {
+
+				iconSize:     [66, 66],
+
+				iconAnchor:   [22, 94],
+
+				popupAnchor:  [-3, -76]
+			}
+		});
+
+		var Icon = new LeafIcon({iconUrl: 'map2_files/ramen.png'});
+
+		L.marker([41.8923803,-87.6222875], {icon: Icon}).bindPopup("Ramen Misoya").addTo(map);
+		L.marker([41.889944,-87.6308142], {icon: Icon}).bindPopup("Ramen San").addTo(map);
+		L.marker([41.894507,-87.6350622], {icon: Icon}).bindPopup("Cocoro").addTo(map);
+		L.marker([41.890271,-87.6324582], {icon: Icon}).bindPopup("Slurping Turtle").addTo(map);
+
+	</script>
+
+</body></html>
