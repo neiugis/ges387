@@ -9,27 +9,7 @@
     <link href="leaflet.timeline.min.css" rel="stylesheet">
 
     <style>
-/*      @import url(http://fonts.googleapis.com/css?family=Open+Sans);*/
-      /*html, body{
-        margin: 0;
-        padding: 0;
-        font-family: "Open Sans", sans-serif;
-      }
-      #info{
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        width: 20vw;
-        padding: 1em;
-      }
-      #map{
-        position: fixed;
-        top: 0;
-        left: 20vw;
-        bottom: 0;
-        right: 0;
-      }*/
+
       .leaflet-bottom.leaflet-left{
         margin-left:20%;
         width: 60%;
@@ -45,43 +25,19 @@
     </style>
   </head>
   <body>
-    <!-- <div id="info">
-      <h1>Earthquakes</h1>
-      <h2>Over the Last 24 Hours</h2>
-      <h3>Currently displayed:</h3>
-      <ul id="displayed-list"></ul>
-    </div> -->
+
     <div id="map" style="height:650px"></div>
 
     <script>
-      var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-      var osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">' +
-        'OpenStreetMap</a> contributors';
-      var osm = L.tileLayer(osmUrl, {
-        maxZoom: 18,
-        attribution: osmAttrib,
-        noWrap: true
-      });
-      var map = L.map('map', {
-        layers: [osm],
-        center: new L.LatLng(0,0),
-        zoom: 3,
-        maxBounds: [[90,-180], [-90, 180]]
-      });
+      var map = L.map('map').setView([0, 0], 3); // center and zoom level for your map area
 
-      // this is just used to show the currently-displayed earthquakes
-      // in the little sidebar. meant as an example of a use for the 'change'
-      // event
-      // function updateList(timeline){
-      //   var displayed = timeline.getLayers();
-      //   var list = document.getElementById('displayed-list');
-      //   list.innerHTML = "";
-      //   displayed.forEach(function(quake){
-      //     var li = document.createElement('li');
-      //     li.innerHTML = quake.feature.properties.title;
-      //     list.appendChild(li);
-      //   });
-      // }
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+          attribution: 'Map data &copy;USGS &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
+          id: 'mapbox.dark',
+          accessToken: 'pk.eyJ1IjoiY3VyZW1hbmdvIiwiYSI6ImNpcTQ4cGFwbDAxbmVmd25vZGNiOTVzeGEifQ.GWZByYkIft6eMRha69C8nw'  
+        }).addTo(map);
+
+
 
       // eqfeed_callback is called once the earthquake geojsonp file below loads
       function eqfeed_callback(data){
