@@ -50,13 +50,11 @@
            //Then add mapbox tilelayer as the basemap
            //I used mapbox.dark, you are free to use other tile maps, but it needs to be appropriate (not too distracting)
            //Please use your own mapbox token, if mapbox tiles are used
-           L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-             attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com">Mapbox</a>',
-             id: 'mapbox.dark',
-             minZoom: 10,
-             accessToken: 'pk.eyJ1IjoiY3VyZW1hbmdvIiwiYSI6ImNpcTQ4cGFwbDAxbmVmd25vZGNiOTVzeGEifQ.GWZByYkIft6eMRha69C8nw'
-           }).addTo(map);
-
+          L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+           attribution: 'Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL.',
+           maxZoom: 11,
+           minZoom: 5
+         }).addTo(map);
            /* Use d3.json to read in the geojson file (robbery.geojson) we exported from QGIS.
   * Replace the geojson file name if you used some other names.
   * L.hexLayer is a leaflet function for creating hexbins based on the input data
